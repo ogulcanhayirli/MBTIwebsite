@@ -107,6 +107,7 @@ app.post("/", function (req, res) {
 });
 
 
+
 app.get("/home", function (req, res) {
   if (req.isAuthenticated()) {
     if (req.query.search) {
