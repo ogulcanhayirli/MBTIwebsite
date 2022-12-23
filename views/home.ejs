@@ -1,0 +1,27 @@
+<%- include("partials/header") %> 
+
+<h1 style="text-align: left;">Anasayfa</h1>
+
+<div class="col-md-12">
+  <% if(noMatch !== undefined){;%>
+    <h3><%= noMatch%> </h3>
+    <% } else{%>
+      <p><%=startingContent  %></p>
+      <% } %>    
+</div>
+<% posts.forEach(function (element) {; %>
+    <div class="card home" style="width: 18rem;">
+        <img src=<%=element.img%> class="card-img-top avatar">
+        <div class="card-body">
+          <h5 class="card-title"><%= element.name %> </h5>
+          <p class="card-text"><%= element.type %> </p>
+          <a href="/char/<%=element._id%>" class="btn btn-primary">Detaya In</a>
+        </div>
+      </div>
+
+    <% }) %>
+</div>
+</div>
+
+
+<%- include("partials/footer") %> 

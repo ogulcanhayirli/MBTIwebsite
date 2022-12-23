@@ -1,0 +1,61 @@
+<%- include("partials/header") %>
+
+
+<div class="card" style="width: 18rem;">
+  <img
+    src=<%= char.img %>
+    class="card-img-top"
+  />
+  <div class="card-body">
+    <h5 class="card-title"><%= char.name %></h5>
+    <p class="card-text"><%= char.type %></p>
+  </div>
+</div>
+
+<form action="/compose/update/" method="get">
+    <input type="hidden" name="updatedChar" value="<%=char._id%>" />
+<button style="margin-bottom:auto" type="submit" class="btn btn-info">Karakteri Düzenle</button>
+</form>
+<% if (char.reviews != null) {; %>
+<ul class="list-group list-group-flush">
+  <% char.reviews.forEach(function(element){ ; %>
+  <li class="list-group-item"><%= element.review %></li>
+  <% }) %>
+</ul>
+
+<% } %>
+
+<form action="/char/addcomment/:charID" method="post">
+  <input type="hidden" name="commentedChar" value="<%=char._id%>" />
+  <div class="form-group">
+    <label>Yorum</label>
+    <textarea
+      class="form-control"
+      name="addedComment"
+      rows="5"
+      cols="30"
+      required
+    ></textarea>
+  </div>
+  <button
+    class="btn btn-primary"
+    style="float: right; margin-top: 10px;"
+    type="submit"
+    name="Button"
+  >
+    Yorum Ekle
+  </button>
+</form>
+
+<form action="/char/delete/:charID" method="post" style=>
+    <input type="hidden" name="deletedChar" value="<%=char._id%>" />
+    <button
+      type="submit"
+      class="btn btn-danger"
+      style="margin-top: 10px;"
+    >
+      Karakteri Sil
+    </button>
+  </form>
+
+<%- include("partials/footer") %>

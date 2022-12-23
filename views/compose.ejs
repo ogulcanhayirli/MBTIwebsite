@@ -1,0 +1,56 @@
+<%- include("partials/header") %>
+
+<h1>Yeni Karakter Oluştur</h1>
+
+<form action="/compose" method="post" enctype="multipart/form-data">
+  <div class="row g-2">
+    <div class="col-md">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          id="floatingInputGrid"
+          placeholder="Isim"
+          name="charName"
+          required
+        />
+        <label for="floatingInputGrid">Isim</label>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="form-floating">
+        <select class="form-select" id="floatingSelectGrid" name="charType" required>
+          <option value="INTP">INTP</option>
+          <option value="INTJ">INTJ</option>
+          <option value="INFP">INFP</option>
+          <option value="INFJ">INFJ</option>
+          <option value="ISTP">ISTP</option>
+          <option value="ISTJ">ISTJ</option>
+          <option value="ISFP">ISFP</option>
+          <option value="ISFJ">ISFJ</option>
+          <option value="ENTP">ENTP</option>
+          <option value="ENTJ">ENTJ</option>
+          <option value="ENFP">ENFP</option>
+          <option value="ENFJ">ENFJ</option>
+          <option value="ESTP">ESTP</option>
+          <option value="ESTJ">ESTJ</option>
+          <option value="ESFP">ESFP</option>
+          <option value="ESFJ">ESFJ</option>
+        </select>
+        <label for="floatingSelectGrid">Tip Seç</label>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="formFile" class="form-label">Istersen Fotoğraf Ekleyebilirsin</label>
+      <input class="form-control" type="file" id="formFile" name="image">
+    </div>
+    <div class="d-grid gap-2">
+        <button class="btn btn-primary float-end" type="submit" name="Button">Ekle</button>
+      </div>
+  </div>
+
+
+</form>
+
+  <%- include("partials/footer") %>
+
