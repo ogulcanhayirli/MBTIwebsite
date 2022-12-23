@@ -10,6 +10,7 @@ const session = require("express-session");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 require("dotenv").config();
+var MongoDBStore = require('connect-mongodb-session')(session);
 
 const lodash = require("lodash");
 const storage = multer.diskStorage({
@@ -29,14 +30,28 @@ const homeStartingContent =
 const app = express();
 app.set("view engine", "ejs");
 
+var store = new MongoDBStore({
+  uri: process.env.DATABASE_CONNECTION,
+  collection: 'mySessions'
+});
+
+// Catch errors
+store.on('error', function(error) {
+  console.log(error);
+});
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(
   session({
     secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+    },
+    store: store,
+    resave: true,
+    saveUninitialized: true,
   })
 );
 
