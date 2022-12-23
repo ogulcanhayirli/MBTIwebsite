@@ -38,3 +38,7 @@
     height: 15vw;
     object-fit: cover;
 }
+
+li{
+	margin: 10px 0;
+  }

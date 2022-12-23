@@ -14,12 +14,13 @@
 
 <form action="/compose/update/" method="get">
     <input type="hidden" name="updatedChar" value="<%=char._id%>" />
+
 <button style="margin-bottom:auto" type="submit" class="btn btn-info">Karakteri Düzenle</button>
 </form>
 <% if (char.reviews != null) {; %>
 <ul class="list-group list-group-flush">
   <% char.reviews.forEach(function(element){ ; %>
-  <li class="list-group-item"><%= element.review %></li>
+  <li class="list-group-item"><%= element.author %>:  <%= element.review %>   </li>
   <% }) %>
 </ul>
 
@@ -49,6 +50,7 @@
 
 <form action="/char/delete/:charID" method="post" style=>
     <input type="hidden" name="deletedChar" value="<%=char._id%>" />
+    <input type="hidden" name="deletedImg" value="<%=char.img%>" />
     <button
       type="submit"
       class="btn btn-danger"
