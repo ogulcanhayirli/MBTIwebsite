@@ -221,7 +221,6 @@ app.post(
 );
 
 app.post("/compose", upload.single("image"), function (req, res) {
-  if (req.isAuthenticated()) {
     const newPost = new Person({
       name: lodash.capitalize(req.body.charName),
       type: req.body.charType,
@@ -235,13 +234,9 @@ app.post("/compose", upload.single("image"), function (req, res) {
         res.redirect("/home");
       }
     });
-  } else {
-    res.redirect("/");
-  }
-});
+  });
 
 app.post("/char/delete/:charID", function (req, res) {
-  if (req.isAuthenticated()) {
     if (req.body.deletedImg !== "/images/default.jpeg") {
       let filePath = "./public" + req.body.deletedImg;
       fs.unlink(filePath, function (err) {
@@ -253,13 +248,10 @@ app.post("/char/delete/:charID", function (req, res) {
     Person.deleteOne({ _id: req.body.deletedChar }, function (err) {
       res.redirect("/home");
     });
-  } else {
-    res.redirect("/");
   }
-});
+);
 
 app.post("/char/addcomment/:charID", function (req, res) {
-  if (req.isAuthenticated()) {
     Person.updateOne(
       { _id: req.body.commentedChar },
       {
@@ -280,10 +272,8 @@ app.post("/char/addcomment/:charID", function (req, res) {
         }
       }
     );
-  } else {
-    res.redirect("/");
-  }
-});
+  } 
+);
 
 
 
